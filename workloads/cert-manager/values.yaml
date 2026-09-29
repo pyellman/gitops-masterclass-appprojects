@@ -1,1 +1,6 @@
 installCRDs: true
+# add this because of error cert-manager-cainjector pod is trying to perform leader election in the default kube-system namespace,
+# but its RBAC permissions (Role/RoleBinding) only allow it to access resources within its own namespace
+global:
+  leaderElection:
+    namespace: "cert-manager" # Change this to your cert-manager namespace
